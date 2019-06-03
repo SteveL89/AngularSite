@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ShipDetailsService } from './ship-details.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import {
   MatButtonModule, MatMenuModule, MatNativeDateModule,
@@ -16,6 +15,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { ShipDetailsComponent } from './ship-details/ship-details.component';
+
+const appRoutes: Routes = [
+  { path:'', component: ShipDetailsComponent }
+  ]
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { ShipDetailsComponent } from './ship-details/ship-details.component';
     MatInputModule,
     MatTooltipModule,
     MatToolbarModule,
-    RouterModule
+    RouterModule.forRoot(
+      appRoutes)
   ],
   providers: [HttpClientModule, ShipDetailsComponent],
   bootstrap: [AppComponent]

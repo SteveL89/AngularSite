@@ -7,19 +7,19 @@ import { ShipDetails } from './ship-details';
 @Injectable({
   providedIn: 'root'
 })
-export class ShipService {
+export class ShipDetailsService {
   url = 'http://localhost:4200/api/shipdetails';
   constructor(private http: HttpClient) { }
 
-  getAllShips(): Observable<ShipDetails[]> {
+  getAllShipDetails(): Observable<ShipDetails[]> {
     return this.http.get<ShipDetails[]>(this.url);
   }
 
-  getShipById(shipId: string): Observable<ShipDetails> {
+  getShipDetailsById(shipId: string): Observable<ShipDetails> {
     return this.http.get<ShipDetails>(this.url + '/' + shipId);
   }
 
-  createEmployee(ship: ShipDetails): Observable<ShipDetails> {
+  createShip(ship: ShipDetails): Observable<ShipDetails> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ export class ShipService {
     return this.http.post<ShipDetails>(this.url, ship, httpOptions);
   }
 
-  updateEmployee(ship: ShipDetails): Observable<ShipDetails> {
+  updateShip(ship: ShipDetails): Observable<ShipDetails> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -37,12 +37,12 @@ export class ShipService {
     return this.http.put<ShipDetails>(this.url + '/', ship, httpOptions);
   }
 
-  deleteEmployeeById(shipId: string): Observable<ShipDetails> {
+  deleteShipDetailsById(shipId: string): Observable<ShipDetails> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.delete<ShipDetails>(this.url + '/DeleteEmployeeDetails?id=' + shipId, httpOptions);
+    return this.http.delete<ShipDetails>(this.url + '?id=' + shipId, httpOptions);
   }
 }

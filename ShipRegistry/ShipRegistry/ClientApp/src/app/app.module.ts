@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ShipService } from './ship-details.service';
+import { ShipDetailsService } from './ship-details.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -10,6 +10,7 @@ import {
   MatIconModule, MatCardModule, MatSidenavModule, MatFormFieldModule,
   MatInputModule, MatTooltipModule, MatToolbarModule
 } from '@angular/material';
+
 import { MatRadioModule } from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

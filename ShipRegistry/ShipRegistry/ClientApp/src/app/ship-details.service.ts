@@ -8,7 +8,7 @@ import { ShipDetails } from './ship-details';
   providedIn: 'root'
 })
 export class ShipDetailsService {
-  url = 'http://localhost:4200/api/shipdetails';
+  url = 'http://localhost:34200/api/shipdetails';
   constructor(private http: HttpClient) { }
 
   getAllShipDetails(): Observable<ShipDetails[]> {

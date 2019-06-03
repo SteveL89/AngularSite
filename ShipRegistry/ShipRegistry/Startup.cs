@@ -23,6 +23,10 @@ namespace ShipRegistry
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<ShipRegistryContext>(options => options
                     .UseSqlServer("Server=(local)\\sqlexpress;Database=ShipRegistry;Trusted_Connection=True;"));
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +44,7 @@ namespace ShipRegistry
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            //app.UseCors(options => options.WithOrigins("http://localhost:34200/api/shipdetails"));
         }
     }
 }

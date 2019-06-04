@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using ShipRegistry.Models;
 
 namespace ShipRegistry
 {
@@ -26,6 +23,20 @@ namespace ShipRegistry
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.Configure<MvcOptions>(options =>
+                {
+                    options.Filters.Add(new CorsAuthorizationFilterFactory("AllowMyOrigin"));
+                });
+            services.AddDbContext<ShipRegistryContext>(options => options
+                    .UseSqlServer("Server=(local)\\sqlexpress;Database=ShipRegistry;Trusted_Connection=True;"));
+            services.AddCors(
+                options =>
+                {
+                    options.AddPolicy("AllowMyOrigin",
+                        builder => builder.AllowAnyOrigin()
+                                                        .AllowAnyMethod()
+                                                        .AllowAnyHeader());
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +53,9 @@ namespace ShipRegistry
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowMyOrigin");
             app.UseMvc();
+            
         }
     }
 }

@@ -31,10 +31,11 @@ export class ShipDetailsService {
   updateShip(ship: ShipDetails): Observable<ShipDetails> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       })
     };
-    return this.http.put<ShipDetails>(this.url + '/', ship, httpOptions);
+    debugger;
+    return this.http.put<any>(this.url + '/' + ship.id, ship, httpOptions);
   }
 
   deleteShipDetailsById(shipId: string): Observable<ShipDetails> {
@@ -43,6 +44,6 @@ export class ShipDetailsService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.delete<ShipDetails>(this.url + '?id=' + shipId, httpOptions);
+    return this.http.delete<ShipDetails>(this.url + '/' + shipId, httpOptions);
   }
 }

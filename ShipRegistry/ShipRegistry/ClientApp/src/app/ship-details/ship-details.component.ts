@@ -20,10 +20,10 @@ export class ShipDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.shipForm = this.formbulider.group({
-      name: ['', [Validators.required]],
-      mass: ['', [Validators.required]],
-      topSpeed: ['', [Validators.required]],
-      powerRating: ['', [Validators.required]],
+      Name: ['', [Validators.required]],
+      Mass: ['', [Validators.required]],
+      TopSpeed: ['', [Validators.required]],
+      PowerRating: ['', [Validators.required]],
     });
     this.loadAllShipDetails();
   }
@@ -36,7 +36,7 @@ export class ShipDetailsComponent implements OnInit {
     this.Createship(ship);
     this.shipForm.reset();
   }
-  loadshipToEdit(shipId: string) {
+  loadShipToEdit(shipId: string) {
     this.shipDetailsService.getShipDetailsById(shipId).subscribe(ship => {
       this.massage = null;
       this.dataSaved = false;
@@ -46,7 +46,6 @@ export class ShipDetailsComponent implements OnInit {
       this.shipForm.controls['TopSpeed'].setValue(ship.topSpeed);
       this.shipForm.controls['PowerRating'].setValue(ship.powerRating);
     });
-
   }
   Createship(ship: ShipDetails) {
     if (this.shipIdUpdate == null) {
@@ -70,7 +69,7 @@ export class ShipDetailsComponent implements OnInit {
       });
     }
   }
-  deleteship(shipId: string) {
+  deleteShip(shipId: string) {
     if (confirm("Are you sure you want to delete this ?")) {
       this.shipDetailsService.deleteShipDetailsById(shipId).subscribe(() => {
         this.dataSaved = true;

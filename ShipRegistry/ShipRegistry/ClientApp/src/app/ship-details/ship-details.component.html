@@ -13,36 +13,36 @@
           <tr>
             <td class="tbl1">
               <mat-form-field class="demo-full-width">
-                <input formControlName="name" matTooltip="Enter Name" matInput placeholder="Name">
+                <input formControlName="Name" matTooltip="Enter Name" matInput placeholder="Name">
               </mat-form-field>
               <mat-error>
-                <span *ngIf="!shipForm.get('name').value && shipForm.get('name').touched"></span>
+                <span *ngIf="!shipForm.get('Name').value && shipForm.get('Name').touched"></span>
               </mat-error>
             </td>
             <td class="tbl1">
               <mat-form-field class="demo-full-width">
-                <input formControlName="mass" matTooltip="Enter Mass" matInput placeholder="Mass">
+                <input formControlName="Mass" matTooltip="Enter Mass" matInput placeholder="Mass">
               </mat-form-field>
               <mat-error>
-                <span *ngIf="!shipForm.get('mass').value && shipForm.get('mass').touched"></span>
+                <span *ngIf="!shipForm.get('Mass').value && shipForm.get('Mass').touched"></span>
               </mat-error>
             </td>
           </tr>
           <tr>
             <td class="tbl1">
               <mat-form-field class="demo-full-width">
-                <input formControlName="topSpeed" matTooltip="Enter Top Speed" matInput placeholder="Top Speed">
+                <input formControlName="TopSpeed" matTooltip="Enter Top Speed" matInput placeholder="Top Speed">
               </mat-form-field>
               <mat-error>
-                <span *ngIf="!shipForm.get('topSpeed').value && shipForm.get('topSpeed').touched"></span>
+                <span *ngIf="!shipForm.get('TopSpeed').value && shipForm.get('TopSpeed').touched"></span>
               </mat-error>
             </td>
             <td class="tbl1">
               <mat-form-field class="demo-full-width">
-                <input formControlName="powerRating" matTooltip="Enter Power Rating" matInput placeholder="Power Rating">
+                <input formControlName="PowerRating" matTooltip="Enter Power Rating" matInput placeholder="Power Rating">
               </mat-form-field>
               <mat-error>
-                <span *ngIf="!shipForm.get('powerRating').value && shipForm.get('powerRating').touched"></span>
+                <span *ngIf="!shipForm.get('PowerRating').value && shipForm.get('PowerRating').touched"></span>
               </mat-error>
             </td>
           </tr>
@@ -75,10 +75,12 @@
             <td class="tbl2">{{shipDetails.topSpeed}}</td>
             <td class="tbl2">{{shipDetails.powerRating}}</td>
             <td class="tbl2">
-              <button type="button" class="btn btn-info" matTooltip="Click Edit Button" (click)="loadShipToEdit(ship.sId)">Edit</button>
+              <button type="button" mat-mini-fab matTooltip="Click Edit Button" (click)="loadShipToEdit(shipDetails.id)">Edit</button>
             </td>
             <td class="tbl2">
-              <button type="button" class="btn btn-danger" matTooltip="Click Delete Button" (click)="deleteShip(ship.sId)">Delete</button>
+              <button type="button" mat-mini-fab matTooltip="Click Delete Button" (click)="deleteShip(shipDetails.id)">
+                <i class="material-icons">delete_forever</i>
+              </button>
             </td>
           </tr>
         </table>

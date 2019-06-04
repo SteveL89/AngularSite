@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;
 using ShipRegistry.Models;
 
@@ -56,7 +58,7 @@ namespace ShipRegistry.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!ShipDetailsExists(id))
                 {
@@ -96,7 +98,7 @@ namespace ShipRegistry.Controllers
 
             return shipDetails;
         }
-
+        
         private bool ShipDetailsExists(int id)
         {
             return _context.ShipDetails.Any(e => e.Id == id);
